@@ -16,26 +16,25 @@
                 Console.WriteLine("En que posicion deseas escribir: ");
                 int numeroPosicion = Convert.ToInt32(Console.ReadLine());
 
-
+                // se mete en el array las filas del fichero
                 string[] lineas = File.ReadAllLines(fichero);
+                // se guarda la fila concreta
+                string linea = lineas[numeroLinea - 1];
+
                 if (numeroLinea >= 1 && numeroLinea <= lineas.Length)
                 {
 
-                    if (numeroPosicion >= 0 && numeroPosicion <= lineas.Length)
+                    if (numeroPosicion >= 0 && numeroPosicion <= linea.Length)
                     {
                         Console.WriteLine("Que desea escribir: ");
                         string nuevoTexto = Console.ReadLine();
 
-                        lineas[numeroLinea - 1] = nuevoTexto;
-
-                        File.WriteAllLines(fichero, lineas);
-
                         try 
                         {
+                            string nuevaLinea = linea.Insert(numeroPosicion, nuevoTexto);
+                            lineas[numeroLinea - 1] = nuevaLinea;
 
-                            string nuevoContenido = lineas[numeroLinea].Insert(numeroPosicion, nuevoTexto);
-
-                            File.WriteAllText(fichero, nuevoContenido);
+                            File.WriteAllLines(fichero,lineas);
                         }
                         catch (Exception e)
                         {
@@ -61,12 +60,12 @@
 
             /*
              
-             
-                jajajajajajajajajajaja
-                patatapatata
-                asd qwe zxc fgh rty vbn
-                               
-                ajfsdkslfhjfyqweiufhdskjvnskjjddddddddddddd
+                
+jajajajajajajajajajaja
+patatapatata
+asdqwezxcfghrtyvbn
+1234567890
+ajfsdkslfhjfyqweiufhdskjvnskjjddddddddddddd
                 
              
              */
